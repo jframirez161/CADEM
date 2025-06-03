@@ -43,7 +43,7 @@ def execute_single_simulation(sim_params, diet_params):
 
         # 3. Prepare Simulation Time Points
         hours = sim_params.get("hours", 24)
-        points_per_hour = sim_params.get("points_per_hour", 1000)
+        points_per_hour = sim_params.get("points_per_hour", 100)
         time_data = get_simulation_times(hours, points_per_hour)
         times_eval = time_data["times"]
         
@@ -78,7 +78,7 @@ def execute_single_simulation(sim_params, diet_params):
             y0=y0,
             t_eval=times_eval,
             args=ode_args,
-            method='DOP853', # RK45 DOP853 LSODA Good for potentially stiff problems
+            method='RK45', # RK45 DOP853 LSODA Good for potentially stiff problems
             rtol=1e-6,
             atol=1e-8
         )
