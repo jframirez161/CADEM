@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field # Field for validation
 from typing import List, Dict, Any, Optional # Optional for potentially nullable fields
+from fastapi.concurrency import run_in_threadpool
 
 
 # Relative import assuming 'simulation' is a package in the same directory level as main.py
@@ -64,11 +65,12 @@ async def simulate_rumen_model_endpoint(request_data: SimulationRequest = Body(.
     print(f"Received API simulation request: {request_data.dict(exclude_none=True)}")
 
     # Pydantic models automatically convert to dicts when calling .dict()
-    result = execute_single_simulation(
+    result = await run_in_threadpool(
+        execute_single_simulation,
         sim_params=request_data.simulation_params.dict(),
-        diet_params=request_data.diet_params.dict(exclude_none=True) # Exclude Nones for cleaner diet_params
+        diet_params=request_data.diet_params.dict(exclude_none=True)
     )
-
+    
     if not result.get("success"):
         # Log the error on the server for more details if needed
         print(f"API call to /api/simulate failed: {result.get('error', 'Unknown simulation error')}")
