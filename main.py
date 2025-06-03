@@ -15,6 +15,7 @@ app = FastAPI(title="CADEM Rumen Model API")
 origins = [
     "http://localhost:5173", # Vite default dev server (React)
     "http://localhost:3000", # Common React dev server
+    "https://cadem-frontend.onrender.com"
     # Add your production frontend URL here when deploying
 ]
 app.add_middleware(

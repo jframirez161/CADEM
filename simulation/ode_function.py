@@ -190,7 +190,7 @@ def ode_function_py(t, state_vec, parms_dict, feedintake_data_ext, state_variabl
     dFd_dt = P_Fd_InFd - U_Fd_FdHe - U_Fd_FdEx
     dSd_dt = P_Sd_InSd - U_Sd_SdHe - U_Sd_SdEx
     dWr_dt = P_Wr_InWr - U_Wr_WrHe - U_Wr_WrEx
-    dNa_dt = P_Na_InNa - U_Na_NaAb - U_Na_NaEx - U_Na_NaAm # Corrected from JS
+    dNa_dt = D_DMI #P_Na_InNa - U_Na_NaAb - U_Na_NaEx - U_Na_NaAm 
     dHe_dt = P_He_LaHe + P_He_XdHe - U_AcHe_HeMi - U_APHe_HeMi - U_BuHe_HeMi - \
              U_He_HeAc - U_He_HeAP - U_He_HeBu - U_He_HeEx
     dMi_dt = P_Mi_HeMi - U_Mi_MiEx
