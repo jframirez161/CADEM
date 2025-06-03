@@ -3,7 +3,6 @@ from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field # Field for validation
 from typing import List, Dict, Any, Optional # Optional for potentially nullable fields
-from fastapi.concurrency import run_in_threadpool
 
 
 # Relative import assuming 'simulation' is a package in the same directory level as main.py
