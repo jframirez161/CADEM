@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field # Field for validation
 from typing import List, Dict, Any, Optional # Optional for potentially nullable fields
 
+
 # Relative import assuming 'simulation' is a package in the same directory level as main.py
 # and 'api' is the root for this part of the project.
 from simulation.run_model import execute_single_simulation
@@ -13,11 +14,12 @@ app = FastAPI(title="CADEM Rumen Model API")
 # --- CORS Middleware ---
 # Adjust origins as needed for your frontend's URL
 origins = [
-    "http://localhost:5173", # Vite default dev server (React)
-    "http://localhost:3000", # Common React dev server
-    "https://cadem-frontend.onrender.com"
-    # Add your production frontend URL here when deploying
+    "https://cadem-frontend.onrender.com", # Your deployed frontend
+    "http://localhost:5173",              # Your local Vite dev server (common default)
+    "http://localhost:3000",              # Another common local dev server port
+    # Add any other origins you need to allow (e.g., staging environment)
 ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
