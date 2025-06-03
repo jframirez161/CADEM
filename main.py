@@ -65,12 +65,11 @@ async def simulate_rumen_model_endpoint(request_data: SimulationRequest = Body(.
     print(f"Received API simulation request: {request_data.dict(exclude_none=True)}")
 
     # Pydantic models automatically convert to dicts when calling .dict()
-    result = await run_in_threadpool(
-        execute_single_simulation,
+    result = execute_single_simulation(
         sim_params=request_data.simulation_params.dict(),
-        diet_params=request_data.diet_params.dict(exclude_none=True)
+        diet_params=request_data.diet_params.dict(exclude_none=True) # Exclude Nones for cleaner diet_params
     )
-    
+
     if not result.get("success"):
         # Log the error on the server for more details if needed
         print(f"API call to /api/simulate failed: {result.get('error', 'Unknown simulation error')}")
