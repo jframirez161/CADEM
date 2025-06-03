@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard] # For running the server
+numpy
+pandas
+scipy
+pydantic
+# Add any other specific dependencies your Python simulation code has
