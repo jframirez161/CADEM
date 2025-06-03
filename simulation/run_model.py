@@ -43,7 +43,7 @@ def execute_single_simulation(sim_params, diet_params):
 
         # 3. Prepare Simulation Time Points
         hours = sim_params.get("hours", 24)
-        points_per_hour = sim_params.get("points_per_hour", 100)
+        points_per_hour = sim_params.get("points_per_hour", 1000)
         time_data = get_simulation_times(hours, points_per_hour)
         times_eval = time_data["times"]
         
@@ -104,21 +104,21 @@ def execute_single_simulation(sim_params, diet_params):
 
 if __name__ == '__main__':
     print("--- Testing execute_single_simulation ---")
-    test_sim_params = {"hours": 24, "points_per_hour": 100} # Lower res for quick test
-    test_diet_params = {
-        "DMI": 20.0, # kg/day
-        "NDF": 300.0, # g/kg DM
-        "St": 250.0,  # g/kg DM
-        "WSC": 100.0, # g/kg DM
-        "Acin": 10.0, # g/kg DM
-        "Prin": 1.5,  # g/kg DM
-        "Buin": 1.5,  # g/kg DM
-        "Lain": 15.0  # g/kg DM
-    }
-    result = execute_single_simulation(test_sim_params, test_diet_params)
-    if result["success"]:
-        print(f"Simulation successful. Number of result points: {len(result['results'])}")
-        print("First result point:", result['results'][0])
-        print("Last result point:", result['results'][-1])
-    else:
-        print(f"Simulation failed: {result['error']}")
+#   test_sim_params = {"hours": 24, "points_per_hour": 100} # Lower res for quick test
+#   test_diet_params = {
+#       "DMI": 20.0, # kg/day
+#       "NDF": 300.0, # g/kg DM
+#       "St": 250.0,  # g/kg DM
+#       "WSC": 100.0, # g/kg DM
+#       "Acin": 10.0, # g/kg DM
+#       "Prin": 1.5,  # g/kg DM
+#       "Buin": 1.5,  # g/kg DM
+#       "Lain": 15.0  # g/kg DM
+#   }
+#   result = execute_single_simulation(test_sim_params, test_diet_params)
+#   if result["success"]:
+#       print(f"Simulation successful. Number of result points: {len(result['results'])}")
+#       print("First result point:", result['results'][0])
+#       print("Last result point:", result['results'][-1])
+#   else:
+#       print(f"Simulation failed: {result['error']}")
