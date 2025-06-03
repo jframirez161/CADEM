@@ -78,7 +78,7 @@ def execute_single_simulation(sim_params, diet_params):
             y0=y0,
             t_eval=times_eval,
             args=ode_args,
-            method='RK45', # RK45 LSODA Good for potentially stiff problems
+            method='DOP853', # RK45 DOP853 LSODA Good for potentially stiff problems
             rtol=1e-6,
             atol=1e-8
         )
